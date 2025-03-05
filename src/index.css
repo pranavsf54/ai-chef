@@ -35,11 +35,11 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
 }
 
 .instructions {
   margin-top: 8px;
+  margin-bottom: 0;
   width: 100%;
   max-width: 500px;
   text-align: left;
@@ -175,7 +175,6 @@ ul.ingredients-list > li {
     transform: rotate(360deg);
   }
 }
-
 
 @media (max-width: 600px) {
   .add-ingredient-form {
