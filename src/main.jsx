@@ -8,22 +8,42 @@ export default function Main() {
   const [recipe, setRecipe] = React.useState("");
   const [loading, setLoading] = React.useState(false);
 
-  // We'll scroll to this div after the user clicks "Get Recipe"
-  const recipeRef = React.useRef(null);
+  // Scroll to this div after the user clicks "Get Recipe"
+  const loaderRef = React.useRef(null);
 
   async function getRecipe() {
-    // 1) Scroll to the recipeRef so the user sees the loader immediately.
-    recipeRef.current?.scrollIntoView({ behavior: "smooth" });
-
-    // 2) Show loader while fetching
+    // Show the loader immediately
     setLoading(true);
 
-    // 3) Fetch the recipe
-    const recipeMarkdown = await getRecipeFromGemini(ingredients);
+    // Use a timeout to ensure that the loader is rendered and its layout is complete
+    setTimeout(() => {
+      // Scroll to the loader element's bottom using window.scrollTo
+      if (loaderRef.current) {
+        const loaderBottom =
+          loaderRef.current.offsetTop + loaderRef.current.offsetHeight;
+        window.scrollTo({
+          top: loaderBottom,
+          behavior: "smooth",
+        });
+      }
+    }, 100); // delay of 100ms can be adjusted
 
-    // 4) Hide loader and set the recipe
-    setLoading(false);
+    // Fetch the recipe
+    const recipeMarkdown = await getRecipeFromGemini(ingredients);
     setRecipe(recipeMarkdown);
+    setLoading(false);
+
+    // Optionally, scroll again so the recipe is fully visible
+    setTimeout(() => {
+      if (loaderRef.current) {
+        const loaderBottom =
+          loaderRef.current.offsetTop + loaderRef.current.offsetHeight;
+        window.scrollTo({
+          top: loaderBottom,
+          behavior: "smooth",
+        });
+      }
+    }, 100);
   }
 
   function addIngredient(formData) {
@@ -60,7 +80,7 @@ export default function Main() {
         />
       )}
 
-      <div ref={recipeRef}></div>
+      <div ref={loaderRef}></div>
 
       {loading && (
         <div className="loader-container">
