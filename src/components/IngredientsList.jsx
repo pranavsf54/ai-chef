@@ -16,7 +16,7 @@ export default function IngredientsList(props) {
         className="remove-ingredient-button"
         onClick={props.removeIngredient}
       >
-        Remove last ingredient
+        <b>-</b> Remove last ingredient
       </button>
 
       {props.ingredients.length > 3 && (
