@@ -82,7 +82,7 @@ main {
 
 .remove-ingredient-button {
   display: inline-block;
-  margin: 16px 0;
+  margin-bottom: 16px;
   border: none;
   border-radius: 6px;
   background: #d17557;
@@ -98,10 +98,6 @@ main {
 .add-ingredient-form > button:hover,
 .get-recipe-container button:hover {
   opacity: 0.9;
-}
-
-ul.ingredients-list {
-  margin-bottom: 48px;
 }
 
 ul.ingredients-list > li {
@@ -177,10 +173,10 @@ ul.ingredients-list > li {
   .get-recipe-container {
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
   }
 
   .get-recipe-container button {
-    align-self: flex-end;
+    align-self: flex-start;
+    margin-bottom: 20px;
   }
 }
