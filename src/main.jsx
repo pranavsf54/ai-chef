@@ -17,20 +17,33 @@ export default function Main() {
     setIngredients((prevIngredients) => [...prevIngredients, newIngredient]);
   }
 
+  function removeIngredient() {
+    setIngredients((prevIngredients) => prevIngredients.slice(0, -1));
+  }
+
   return (
     <main>
-      <form action={addIngredient} className="add-ingredient-form">
-        <input
-          type="text"
-          placeholder="e.g. oregano"
-          aria-label="Add ingredient"
-          name="ingredient"
-        />
-        <button>Add ingredient</button>
-      </form>
+      <div className="add-ingredient-container">
+        <form action={addIngredient} className="add-ingredient-form">
+          <input
+            type="text"
+            placeholder="e.g. oregano"
+            aria-label="Add ingredient"
+            name="ingredient"
+          />
+          <button>Add ingredient</button>
+        </form>
+        <p className="instructions">
+          Add at least 4 ingredients to generate a recipe
+        </p>
+      </div>
 
       {ingredients.length > 0 && (
-        <IngredientsList ingredients={ingredients} getRecipe={getRecipe} />
+        <IngredientsList
+          ingredients={ingredients}
+          getRecipe={getRecipe}
+          removeIngredient={removeIngredient}
+        />
       )}
 
       {recipe && <ChefRecipe recipe={recipe} />}

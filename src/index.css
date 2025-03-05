@@ -31,9 +31,25 @@ main {
   padding: 30px 30px 10px;
 }
 
+.add-ingredient-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.instructions {
+  margin-top: 8px;
+  width: 100%;
+  max-width: 500px;
+  text-align: left;
+  font-weight: 300;
+}
+
 .add-ingredient-form {
   display: flex;
-  justify-content: center;
+  width: 100%;
+  max-width: 500px;
   gap: 12px;
   height: 38px;
 }
@@ -62,6 +78,26 @@ main {
 .add-ingredient-form > button::before {
   content: "+";
   margin-right: 5px;
+}
+
+.remove-ingredient-button {
+  display: inline-block;
+  margin: 16px 0;
+  border: none;
+  border-radius: 6px;
+  background: #d17557;
+  color: #fafaf8;
+  padding: 9px 17px;
+  font-family: Inter, sans-serif;
+  font-size: 0.875rem;
+  cursor: pointer;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.remove-ingredient-button:hover,
+.add-ingredient-form > button:hover,
+.get-recipe-container button:hover {
+  opacity: 0.9;
 }
 
 ul.ingredients-list {
@@ -116,4 +152,35 @@ ul.ingredients-list > li {
 .suggested-recipe-container ul li,
 .suggested-recipe-container ol li {
   margin-bottom: 8px;
+}
+
+@media (max-width: 600px) {
+  .add-ingredient-form {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .add-ingredient-form > input,
+  .add-ingredient-form > button {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .add-ingredient-form > button {
+    height: 30px;
+  }
+
+  .instructions {
+    text-align: center;
+  }
+
+  .get-recipe-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .get-recipe-container button {
+    align-self: flex-end;
+  }
 }
